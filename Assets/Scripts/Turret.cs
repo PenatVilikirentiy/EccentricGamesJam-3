@@ -30,7 +30,6 @@ public class Turret : MonoBehaviour
         if (Aim() && Time.time >= _nextTimeToFire)
         {
             _nextTimeToFire = Time.time + 1 / _fireRate;
-            print("Shot");
             Shoot();
         }
     }

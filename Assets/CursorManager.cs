@@ -11,8 +11,8 @@ public class CursorManager : MonoBehaviour
             Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(cameraRay, out RaycastHit hit, 100f))
             {
-                TrainWagon wagon = hit.collider.attachedRigidbody.GetComponent<TrainWagon>();
-                TestEnemy enemy = hit.collider.attachedRigidbody.GetComponent<TestEnemy>();
+                TrainWagon wagon = hit.collider?.attachedRigidbody?.GetComponent<TrainWagon>();
+                TestEnemy enemy = hit.collider?.attachedRigidbody?.GetComponent<TestEnemy>();
 
                 if (wagon)
                 {

@@ -8,12 +8,12 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //EnemyHealth enemyHealth = collision.collider.attachedRigidbody.GetComponent<EnemyHealth>();
+        Health enemyHealth = collision.collider.attachedRigidbody.GetComponent<Health>();
 
-        //if (enemyHealth)
-        //{
-        //    enemyHealth.TakeDamage(_damage);
-        //}
+        if (enemyHealth)
+        {
+            enemyHealth.TakeDamage(_damage);
+        }
 
         Die();
     }

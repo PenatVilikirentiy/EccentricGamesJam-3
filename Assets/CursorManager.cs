@@ -12,17 +12,17 @@ public class CursorManager : MonoBehaviour
             if(Physics.Raycast(cameraRay, out RaycastHit hit, 100f))
             {
                 TrainWagon wagon = hit.collider.attachedRigidbody.GetComponent<TrainWagon>();
-                //Enemy enemy = hit.collider.attachedRigidbody.GetComponent<Enemy>();
+                TestEnemy enemy = hit.collider.attachedRigidbody.GetComponent<TestEnemy>();
 
                 if (wagon)
                 {
                     _currentSelectedWagon = wagon;
                 }
 
-                //if (enemy && _currentSelectedWagon)
-                //{
-                //    _currentSelectedWagon.Attack();
-                //}
+                if (enemy && _currentSelectedWagon)
+                {
+                    _currentSelectedWagon.Attack(enemy);
+                }
             }            
         }
     }

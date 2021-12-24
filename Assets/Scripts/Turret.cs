@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+
+    public Transform CurrentTarget;
+
     [SerializeField] private Transform _bulletSpawner;
-    [SerializeField] private Transform _currentTarget;
     [SerializeField] private Transform _turretModel;
 
     [SerializeField] private Bullet _bulletPrefab;
@@ -43,13 +45,15 @@ public class Turret : MonoBehaviour
         //_muzzleFlash.SetActive(true);
         //Invoke(nameof(HideMuzzleFlash), 0.1f);
 
-        //Bullet bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, Quaternion.identity);
-        //bullet.Rigidbody.velocity = _bulletSpawner.forward * _bulletSpeed;
+        Bullet bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, Quaternion.identity);
+        bullet.Rigidbody.velocity = _bulletSpawner.forward * _bulletSpeed;
     }
 
     public bool Aim()
     {
-        Vector3 target = _currentTarget.position - _turretModel.position;
+        if (CurrentTarget == null) return false;
+
+        Vector3 target = CurrentTarget.position - _turretModel.position;
         Quaternion targetRotation = Quaternion.LookRotation(target);
         _turretModel.rotation = Quaternion.Lerp(_turretModel.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
 

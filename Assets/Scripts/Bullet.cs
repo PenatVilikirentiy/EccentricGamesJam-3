@@ -6,8 +6,14 @@ public class Bullet : MonoBehaviour
     [SerializeField] private int _damage;
     [SerializeField] private ParticleSystem _bulletExplosionEffect;
 
+    private void Start()
+    {
+        Destroy(gameObject, 3f);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
+        print(collision.relativeVelocity);
         Health enemyHealth = collision.collider?.attachedRigidbody?.GetComponent<Health>();
 
         if (enemyHealth)

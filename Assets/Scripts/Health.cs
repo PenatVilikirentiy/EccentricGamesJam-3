@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
         _currentHealth -= damageAmount;
 
 
-        HealthBar.UpdateFillAmmount(_currentHealth, _maxHealth);
+        HealthBar?.UpdateFillAmmount(_currentHealth, _maxHealth);
 
         if (_currentHealth <= 0)
         {

@@ -4,6 +4,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] protected int _currentHealth;
     [SerializeField] protected int _maxHealth = 100;
+    [SerializeField] private HealthBar HealthBar;
 
     private void Start()
     {
@@ -14,7 +15,10 @@ public class Health : MonoBehaviour
     {
         _currentHealth -= damageAmount;
 
-        if(_currentHealth <= 0)
+
+        HealthBar.UpdateFillAmmount(_currentHealth, _maxHealth);
+
+        if (_currentHealth <= 0)
         {
             _currentHealth = 0;
             Die();

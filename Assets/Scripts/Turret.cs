@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-
+    [SerializeField] private Renderer[] _renderers;
+    public Collider Collider;
     public Transform CurrentTarget;
+    public Transform _raycast;
 
     [SerializeField] private Transform _bulletSpawner;
     [SerializeField] private Transform _turretModel;
@@ -21,6 +23,8 @@ public class Turret : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 1f;
 
     [SerializeField] private LayerMask _whatIsEnemy;
+
+    public Vector2Int _size = Vector2Int.one;
 
     private float _nextTimeToFire = 0;
 
@@ -64,9 +68,44 @@ public class Turret : MonoBehaviour
         _muzzleFlash.SetActive(false);
     }
 
+    public void SetTranparent(bool isAvailable)
+    {
+        if(isAvailable)
+        {
+            foreach(Renderer renderer in _renderers)
+            {
+                renderer.material.color = new Color(0, 1, 0, .2f);
+            }
+        }
+        else
+        {
+            foreach (Renderer renderer in _renderers)
+            {
+                renderer.material.color = new Color(1, 0, 0, .2f);
+            }
+        }
+    }
+
+    public void SetNormal()
+    {
+        foreach (Renderer renderer in _renderers)
+        {
+            renderer.material.color = new Color(1, 1, 1, 1);
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(_bulletSpawner.position, _bulletSpawner.forward * 100f);
+        Gizmos.DrawRay(_bulletSpawner.position, _bulletSpawner.forward * 100f);
+
+        for (int x = 0; x < _size.x; x++)
+        {
+            for (int y = 0; y < _size.y; y++)
+            {
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawCube(transform.position + new Vector3(x, 0, y), new Vector3(1, 0.1f, 1));
+            }
+        }
     }
 }

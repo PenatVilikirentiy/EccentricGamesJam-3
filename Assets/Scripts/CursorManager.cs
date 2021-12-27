@@ -9,6 +9,7 @@ public class CursorManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
             if(Physics.Raycast(cameraRay, out RaycastHit hit, 100f))
             {
                 TrainWagon wagon = hit.collider?.attachedRigidbody?.GetComponent<TrainWagon>();
@@ -23,7 +24,7 @@ public class CursorManager : MonoBehaviour
                 {
                     _currentSelectedWagon.Attack(enemy);
                 }
-            }            
+            }
         }
     }
 }

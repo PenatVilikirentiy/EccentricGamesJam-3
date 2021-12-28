@@ -7,19 +7,22 @@ public class Bullet : MonoBehaviour
     [SerializeField] private ParticleSystem _bulletExplosionEffect;
 
 
-    private void Start()
+    private void OnEnable()
     {
-        Destroy(gameObject, 3f);
+        //Destroy(gameObject, 3f);
+        Invoke("Die", 1.0f);
+
+
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        print(collision.relativeVelocity);
-        Health enemyHealth = collision.collider?.attachedRigidbody?.GetComponent<Health>();
+        Health enemyHealth = collider.attachedRigidbody?.GetComponent<Health>();
 
         if (enemyHealth)
         {
             enemyHealth.TakeDamage(_damage);
+            Debug.Log("dealthDamage");
         }
 
         Die();
@@ -28,6 +31,7 @@ public class Bullet : MonoBehaviour
     private void Die()
     {
         //_bulletExplosionEffect.Play();
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

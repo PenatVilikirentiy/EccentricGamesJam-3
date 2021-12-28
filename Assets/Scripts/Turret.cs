@@ -42,15 +42,22 @@ public class Turret : MonoBehaviour
     {
         //var shotSound = Instantiate(_shotSound);
         //shotSound.volume = 0.3f;
-        _shotSound.pitch *=  Random.Range(0.9f, 1.1f);
+        _shotSound.pitch *=  Random.Range(0.9f, 1.1f); 
         _shotSound.Play();
         //Destroy(shotSound.gameObject, 1f);
 
         //_muzzleFlash.SetActive(true);
         //Invoke(nameof(HideMuzzleFlash), 0.1f);
 
-        Bullet bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, Quaternion.identity);
-        bullet.Rigidbody.velocity = _bulletSpawner.forward * _bulletSpeed;
+GameObject bullet = ObjectPool.SharedInstance.GetPooledObject(); 
+  if (bullet != null) {
+    bullet.transform.position = _bulletSpawner.position;
+    bullet.transform.rotation = Quaternion.identity;
+    bullet.SetActive(true);
+    bullet.GetComponent<Rigidbody>().velocity = _bulletSpawner.forward * _bulletSpeed;
+        }
+       // Bullet bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, Quaternion.identity);
+       // bullet.Rigidbody.velocity = _bulletSpawner.forward * _bulletSpeed;
     }
 
     public bool Aim()

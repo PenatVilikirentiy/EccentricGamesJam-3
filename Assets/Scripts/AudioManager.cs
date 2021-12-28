@@ -23,8 +23,8 @@ public class AudioManager : MonoBehaviour {
         _audioSource.pitch = pitch * _pitchControl;
 
 
-        Debug.Log("currentSpeed" + currentSpeed);
-        Debug.Log("topSpeed" + topSpeed);
-        Debug.Log("pitch" + pitch);
+        //Debug.Log("currentSpeed" + currentSpeed);
+        //Debug.Log("topSpeed" + topSpeed);
+        //Debug.Log("pitch" + pitch);
     }
 }

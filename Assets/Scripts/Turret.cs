@@ -42,7 +42,8 @@ public class Turret : MonoBehaviour
     {
         //var shotSound = Instantiate(_shotSound);
         //shotSound.volume = 0.3f;
-        //shotSound.Play();
+        _shotSound.pitch *=  Random.Range(0.9f, 1.1f);
+        _shotSound.Play();
         //Destroy(shotSound.gameObject, 1f);
 
         //_muzzleFlash.SetActive(true);

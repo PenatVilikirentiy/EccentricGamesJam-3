@@ -13,7 +13,8 @@ public class EnemyMove : MonoBehaviour
 
     private void Start() {
 
-        _newPosition =  new Vector3(Random.Range(-2, 5), 0, Random.Range(-2, 5));
+        _newPosition =  new Vector3(Random.Range(0f, -3f)*3f, 0, Random.Range(-3f, 3f) * 3f);
+        Debug.Log(gameObject.name + "position " + _newPosition);
 
     }
 

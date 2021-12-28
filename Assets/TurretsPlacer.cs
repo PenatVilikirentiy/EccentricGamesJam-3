@@ -20,16 +20,16 @@ public class TurretsPlacer : MonoBehaviour
 
                 if (wagon)
                 {
-                    _isAvailableToPlace = _turretToPlace.transform.position.z >= wagon._gridSize.y - _turretToPlace._size.y &&
-                                          _turretToPlace.transform.position.z <= wagon._gridSize.y + _turretToPlace._size.y;
+                    _isAvailableToPlace = _turretToPlace.transform.position.z >= wagon._gridStartPoint.position.y - _turretToPlace._size.y &&
+                                          _turretToPlace.transform.position.z <= wagon._gridStartPoint.position.y + _turretToPlace._size.y;
                 }
 
                 _turretToPlace.SetTranparent(_isAvailableToPlace);
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && _isAvailableToPlace)
                 {
-                    _turretToPlace.transform.position = new Vector3(0, groundHit.point.y, 1);
-                    wagon.Turrets.Add(_turretToPlace);
+                    _turretToPlace.transform.position = new Vector3(0, groundHit.point.y, wagon._gridStartPoint.position.z);
+                    wagon.AddTurret(_turretToPlace);
                     _turretToPlace.transform.parent = wagon.transform;
                     _turretToPlace.SetNormal();
                     _turretToPlace = null;
@@ -38,7 +38,7 @@ public class TurretsPlacer : MonoBehaviour
         }
     }
 
-    public void PlaceTurret(Turret turret)
+    public void CreateTurret(Turret turret)
     {
         if(_turretToPlace != null)
         {

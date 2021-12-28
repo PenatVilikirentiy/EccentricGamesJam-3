@@ -5,11 +5,11 @@ public class TrainWagon : MonoBehaviour
 {
     public Vector2Int _gridSize = new Vector2Int(2, 2);
 
-    public List<Turret> Turrets;
+    [SerializeField] private List<Turret> _turrets;
 
-    [SerializeField] private Transform _gridStartPoint;
+    [SerializeField] public Transform _gridStartPoint;
 
-    private Turret[,] _grid;
+    public Turret[,] _grid;
 
     private void Awake()
     {
@@ -18,10 +18,16 @@ public class TrainWagon : MonoBehaviour
 
     public void Attack(TestEnemy enemy)
     {
-        foreach(Turret turret in Turrets)
+        foreach(Turret turret in _turrets)
         {
             turret.CurrentTarget = enemy.transform;
         }
+    }
+
+    public void AddTurret(Turret turret)
+    {
+        _turrets.Add(turret);
+        // Play Sound
     }
 
     private void OnDrawGizmos()

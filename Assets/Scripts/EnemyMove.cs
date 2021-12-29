@@ -8,24 +8,25 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private float _speedMultiplier;
     [SerializeField] private float _rotationSpeed = 0.01f;
-    [SerializeField] private Vector3 _newPosition;
+    [SerializeField] private Vector3 _randomPosition;
     private Vector3 _targetDirection;
 
     private void Start() {
 
-        _newPosition =  new Vector3(Random.Range(0f, -3f)*3f, 0, Random.Range(-3f, 3f) * 3f);
-        Debug.Log(gameObject.name + "position " + _newPosition);
+        Target = GameObject.FindObjectOfType<MoveTrain>().transform;
+        _setRandomPosition();
+        Debug.Log(gameObject.name + "position " + _randomPosition);
 
     }
 
 
     private void FixedUpdate() {
+        Debug.Log(Target.position);
 
-
-        Vector3 randomMove = new Vector3(Random.Range(-0.1f, 0.1f), 0, Random.Range(-0.1f, 0.1f));
+        Vector3 randomMove = new Vector3(0, 0, Random.Range(-0.2f, 0.2f));
 
         //moving forvard
-        _targetDirection = (Target.position + _newPosition + randomMove) - transform.position;
+        _targetDirection = (Target.position + _randomPosition + randomMove) - transform.position;
         _targetDirection = new Vector3(_targetDirection.x, 0, _targetDirection.z);
 
         float distance = _targetDirection.magnitude;
@@ -36,12 +37,28 @@ public class EnemyMove : MonoBehaviour
         float angle = Vector3.SignedAngle(transform.forward, _targetDirection, Vector3.up);
         _rigidbody.AddTorque(0, angle * _rotationSpeed, 0, ForceMode.VelocityChange);
 
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.GetComponent<EnemyMove>()) {
+            _moveAway();
+                Debug.Log("Colided with enemy");
+        }
+    }
+
+
+    private void _moveAway() {
+        _randomPosition =  new Vector3(Random.Range(-1f, -4f)*3f, 0, _randomPosition.z);
+        Debug.Log(gameObject.name + "position " + _randomPosition);
+        //_rigidbody.rotation = Quaternion.Lerp(_rigidbody.rotation, Quaternion.identity, 1);
 
     }
-    private void Update() {
-
-
+    private void _setRandomPosition() {
+        _randomPosition = new Vector3(Random.Range(-1f, -4f) * 3f, 0, Random.Range(-5f, 1f) * 3f);
+        Debug.Log(gameObject.name + "position " + _randomPosition);
 
     }
+
+
 
 }

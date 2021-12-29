@@ -6,6 +6,8 @@ public class Health : MonoBehaviour
     [SerializeField] protected int _maxHealth = 100;
     [SerializeField] private HealthBar HealthBar;
 
+    [SerializeField] protected int _reward = 100;
+
     private void Start()
     {
         _currentHealth = _maxHealth;
@@ -28,5 +30,6 @@ public class Health : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+        FindObjectOfType<MoneyManager>().ChangeValue(_reward);
     }
 }

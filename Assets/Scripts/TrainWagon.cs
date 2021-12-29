@@ -3,29 +3,36 @@ using UnityEngine;
 
 public class TrainWagon : MonoBehaviour
 {
-   // //public Vector2Int _gridSize = new Vector2Int(2, 2);
-   // //[SerializeField] private List<Turret> _turrets;
-   ////[SerializeField] public Transform _gridStartPoint;
+    //public Vector2Int _gridSize = new Vector2Int(2, 2);
+    [SerializeField] private List<Turret> _turrets;
+    [SerializeField] public Transform _gridStartPoint;
 
-   // public Turret[,] _grid;
+    public Turret[,] _grid;
 
-   // private void Awake()
-   // {
-   //     _grid = new Turret[_gridSize.x, _gridSize.y];
-   // }
+    private void Awake()
+    {
+        //_grid = new Turret[_gridSize.x, _gridSize.y];
+    }
 
     public void Attack(TestEnemy enemy)
     {
-        //foreach(Turret turret in _turrets)
-        //{
-        //    turret.CurrentTarget = enemy.transform;
-        //}
+        foreach (Turret turret in _turrets)
+        {
+            turret.CurrentTarget = enemy.transform;
+        }
     }
 
     public void AddTurret(Turret turret)
     {
-        //_turrets.Add(turret);
+        if (turret == null) return;
+
+        _turrets.Add(turret);
         // Play Sound
+    }
+
+    public void RemoveTurret(Turret turret)
+    {
+        _turrets.Remove(turret);
     }
 
     //private void OnDrawGizmos()

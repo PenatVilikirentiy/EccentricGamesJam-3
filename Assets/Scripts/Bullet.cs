@@ -7,10 +7,15 @@ public class Bullet : MonoBehaviour
     [SerializeField] private ParticleSystem _bulletExplosionEffect;
 
 
+    private void Start()
+    {
+        Destroy(gameObject, 3f);
+    }
+
     private void OnEnable()
     {
-        //Destroy(gameObject, 3f);
-        Invoke("Die", 1.0f);
+        
+        //Invoke("Die", 1.0f);
 
 
     }
@@ -22,7 +27,7 @@ public class Bullet : MonoBehaviour
         if (enemyHealth)
         {
             enemyHealth.TakeDamage(_damage);
-            Debug.Log("dealthDamage");
+            //Debug.Log("dealthDamage");
         }
 
         Die();
@@ -31,7 +36,7 @@ public class Bullet : MonoBehaviour
     private void Die()
     {
         //_bulletExplosionEffect.Play();
-        //Destroy(gameObject);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
+        //gameObject.SetActive(false);
     }
 }

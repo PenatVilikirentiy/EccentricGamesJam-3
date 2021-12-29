@@ -21,7 +21,7 @@ public class PointerManager : MonoBehaviour {
                 TurretPlatform platform = hit.collider?.GetComponent<TurretPlatform>();
                 if (platform) {
                     platform.chooseTurret(CurrentTurretIndex);
-                    Debug.Log("TurretChosen" + CurrentTurretIndex);
+                    //Debug.Log("TurretChosen" + CurrentTurretIndex);
                 }
 
             }
@@ -31,6 +31,7 @@ public class PointerManager : MonoBehaviour {
 
     public void ReadyToFight() {
         CanvasConstructorOnly.SetActive(false);
+        gameObject.SetActive(false);
         moveTrain.Speed = 10f;
         //отключить расстановку турелей
     }

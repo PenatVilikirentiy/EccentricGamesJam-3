@@ -77,8 +77,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.1, z: 1}
-  m_Center: {x: 0, y: 0.05, z: 0}
+  m_Size: {x: 1, y: 1.3879237, z: 1}
+  m_Center: {x: 0, y: 0.69396186, z: 0}
 --- !u!114 &6327339952588330137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +97,7 @@ MonoBehaviour:
   - {fileID: 7284618498504258082}
   - {fileID: 7415395881933495106}
   ChosenTurret: 0
+  wagon: {fileID: 0}
 --- !u!1001 &3473549693850011338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -296,7 +297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6137472700367320295, guid: a38db62ab20fbea45b550421fbb86579, type: 3}
       propertyPath: _fireRate
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6137472700367320295, guid: a38db62ab20fbea45b550421fbb86579, type: 3}
       propertyPath: CurrentTarget

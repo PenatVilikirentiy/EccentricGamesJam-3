@@ -8,9 +8,10 @@ public class EnemyTurret : MonoBehaviour
     public Transform _raycast;
 
     [SerializeField] private Transform _bulletSpawner;
-    [SerializeField] private Transform _turretModel;
+    [SerializeField] private Transform _turretModelToRotateLeftRight;
+    [SerializeField] private Transform _turretModelToRotateUpDown;
 
-    [SerializeField] private Bullet _bulletPrefab;
+    [SerializeField] private EnemyBullet _bulletPrefab;
 
     [SerializeField] private AudioSource _shotSound;
 
@@ -24,10 +25,16 @@ public class EnemyTurret : MonoBehaviour
 
     [SerializeField] private LayerMask _whatIsEnemy;
 
-    public Vector2Int _size = Vector2Int.one;
+    //public Vector2Int _size = Vector2Int.one;
 
     private float _nextTimeToFire = 0;
 
+    private TrainWagon[] _targets;
+
+    private void Start()
+    {
+        _targets = FindObjectsOfType<TrainWagon>();
+    }
 
     private void Update()
     {
@@ -42,33 +49,45 @@ public class EnemyTurret : MonoBehaviour
     {
         //var shotSound = Instantiate(_shotSound);
         //shotSound.volume = 0.3f;
-        _shotSound.pitch *=  Random.Range(0.9f, 1.1f); 
-        _shotSound.Play();
+        //_shotSound.pitch = Random.Range(0.9f, 1.1f);
+        AudioSource shotSound = Instantiate(_shotSound, transform.position, Quaternion.identity);
+        Destroy(shotSound.gameObject, 2f);
         //Destroy(shotSound.gameObject, 1f);
 
         //_muzzleFlash.SetActive(true);
         //Invoke(nameof(HideMuzzleFlash), 0.1f);
 
-GameObject bullet = ObjectPool.SharedInstance.GetPooledObject(); 
-  if (bullet != null) {
-    bullet.transform.position = _bulletSpawner.position;
-    bullet.transform.rotation = Quaternion.identity;
-    bullet.SetActive(true);
-    bullet.GetComponent<Rigidbody>().velocity = _bulletSpawner.forward * _bulletSpeed;
-        }
-       // Bullet bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, Quaternion.identity);
-       // bullet.Rigidbody.velocity = _bulletSpawner.forward * _bulletSpeed;
+        //Bullet bullet = ObjectPool.SharedInstance.GetPooledObject();
+        //if (bullet != null)
+        //{
+        //    bullet.transform.position = _bulletSpawner.position;
+        //    bullet.transform.rotation = Quaternion.identity;
+        //    bullet.gameObject.SetActive(true);
+        //    bullet.GetComponent<Rigidbody>().velocity = _bulletSpawner.forward * _bulletSpeed;
+        //}
+         EnemyBullet bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, Quaternion.identity);
+         bullet.Rigidbody.velocity = _bulletSpawner.forward * _bulletSpeed;
     }
 
     public bool Aim()
     {
-        if (CurrentTarget == null) return false;
+        if (CurrentTarget == null) SetTarget();
 
-        Vector3 target = CurrentTarget.position - _turretModel.position;
-        Quaternion targetRotation = Quaternion.LookRotation(target);
-        _turretModel.rotation = Quaternion.Lerp(_turretModel.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
+        Vector3 target = CurrentTarget.position - _bulletSpawner.position;
+        Vector3 upDownRotation = new Vector3(target.x, target.y, 0);
+        Vector3 leftRightRotation = new Vector3(target.x, 0, target.z);
+
+        Quaternion targetXRotation = Quaternion.LookRotation(upDownRotation);
+        Quaternion targetYRotation = Quaternion.LookRotation(leftRightRotation, Vector3.up);
+        _turretModelToRotateLeftRight.rotation = Quaternion.Lerp(_turretModelToRotateLeftRight.rotation, targetYRotation, Time.deltaTime * _rotationSpeed);
+        _turretModelToRotateUpDown.rotation = Quaternion.Lerp(_turretModelToRotateUpDown.rotation, targetXRotation, Time.deltaTime * _rotationSpeed);
 
         return Physics.Raycast(_bulletSpawner.position, _bulletSpawner.forward, 100f, _whatIsEnemy);
+    }
+
+    private void SetTarget()
+    {
+        CurrentTarget = _targets[Random.Range(0, _targets.Length)]?.transform;
     }
 
     private void HideMuzzleFlash()
@@ -107,13 +126,13 @@ GameObject bullet = ObjectPool.SharedInstance.GetPooledObject();
         Gizmos.color = Color.red;
         Gizmos.DrawRay(_bulletSpawner.position, _bulletSpawner.forward * 100f);
 
-        for (int x = 0; x < _size.x; x++)
-        {
-            for (int y = 0; y < _size.y; y++)
-            {
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawCube(transform.position + new Vector3(x, 0, y), new Vector3(1, 0.1f, 1));
-            }
-        }
+        //for (int x = 0; x < _size.x; x++)
+        //{
+        //    for (int y = 0; y < _size.y; y++)
+        //    {
+        //        Gizmos.color = Color.yellow;
+        //        Gizmos.DrawCube(transform.position + new Vector3(x, 0, y), new Vector3(1, 0.1f, 1));
+        //    }
+        //}
     }
 }

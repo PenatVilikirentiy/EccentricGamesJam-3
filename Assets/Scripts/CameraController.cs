@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour {
 
     private void Start() {
         ChosenCar = CarsToChose[0];
-        Debug.Log("CarsToChose.Count" + CarsToChose.Count);
+        //Debug.Log("CarsToChose.Count" + CarsToChose.Count);
     }
 
     private void Update() {

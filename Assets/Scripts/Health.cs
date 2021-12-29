@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void Die()
+    protected virtual void Die()
     {
         Destroy(gameObject);
         FindObjectOfType<MoneyManager>().ChangeValue(_reward);

@@ -15,13 +15,13 @@ public class EnemyMove : MonoBehaviour
 
         Target = GameObject.FindObjectOfType<MoveTrain>().transform;
         _setRandomPosition();
-        Debug.Log(gameObject.name + "position " + _randomPosition);
+        //Debug.Log(gameObject.name + "position " + _randomPosition);
 
     }
 
 
     private void FixedUpdate() {
-        Debug.Log(Target.position);
+        //Debug.Log(Target.position);
 
         Vector3 randomMove = new Vector3(0, 0, Random.Range(-0.2f, 0.2f));
 
@@ -42,20 +42,20 @@ public class EnemyMove : MonoBehaviour
     private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.GetComponent<EnemyMove>()) {
             _moveAway();
-                Debug.Log("Colided with enemy");
+                //Debug.Log("Colided with enemy");
         }
     }
 
 
     private void _moveAway() {
         _randomPosition =  new Vector3(Random.Range(-1f, -4f)*3f, 0, _randomPosition.z);
-        Debug.Log(gameObject.name + "position " + _randomPosition);
+        //Debug.Log(gameObject.name + "position " + _randomPosition);
         //_rigidbody.rotation = Quaternion.Lerp(_rigidbody.rotation, Quaternion.identity, 1);
 
     }
     private void _setRandomPosition() {
         _randomPosition = new Vector3(Random.Range(-1f, -4f) * 3f, 0, Random.Range(-5f, 1f) * 3f);
-        Debug.Log(gameObject.name + "position " + _randomPosition);
+        //Debug.Log(gameObject.name + "position " + _randomPosition);
 
     }
 

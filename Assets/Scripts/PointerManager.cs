@@ -15,17 +15,21 @@ public class PointerManager : MonoBehaviour {
 
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-   
-            if (Physics.Raycast(cameraRay, out RaycastHit hit, 100f)) {
-                TurretPlatform platform = hit.collider?.GetComponent<TurretPlatform>();
-                if (platform) {
-                    platform.chooseTurret(CurrentTurretIndex);
-                    //Debug.Log("TurretChosen" + CurrentTurretIndex);
+            if(MoneyManager.CoinCount >= 100)
+            {
+                Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(cameraRay, out RaycastHit hit, 100f))
+                {
+                    TurretPlatform platform = hit.collider?.GetComponent<TurretPlatform>();
+                    if (platform)
+                    {
+                        platform.chooseTurret(CurrentTurretIndex);
+                        //Debug.Log("TurretChosen" + CurrentTurretIndex);
+                    }
+
                 }
-
             }
-
         }
     }
 
@@ -38,6 +42,8 @@ public class PointerManager : MonoBehaviour {
 
     public void SetTurret(int turretIndex) {
          CurrentTurretIndex = turretIndex;
+        MoneyManager.CoinCount -= 100;
+        MoneyManager.ChangeValue(0);
         Debug.Log("button SentTurretIndex" + CurrentTurretIndex);
     }
 

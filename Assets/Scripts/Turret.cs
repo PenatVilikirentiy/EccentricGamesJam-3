@@ -68,13 +68,14 @@ public class Turret : MonoBehaviour
         if (CurrentTarget == null) return false;
 
         Vector3 target = CurrentTarget.position - _bulletSpawner.position;
-        Vector3 upDownRotation = new Vector3(0, target.y, target.z);
+        Vector3 upDownRotation = new Vector3(target.x, target.y, 0);
         Vector3 leftRightRotation = new Vector3(target.x, 0, target.z);
 
-        Quaternion targetXRotation = Quaternion.LookRotation(upDownRotation);
+        //Quaternion targetXRotation = Quaternion.LookRotation(upDownRotation);
         Quaternion targetYRotation = Quaternion.LookRotation(leftRightRotation, Vector3.up);
         _turretModelToRotateLeftRight.rotation = Quaternion.Lerp(_turretModelToRotateLeftRight.rotation, targetYRotation, Time.deltaTime * _rotationSpeed);
-        _turretModelToRotateUpDown.rotation = Quaternion.Lerp(_turretModelToRotateUpDown.rotation, targetXRotation, Time.deltaTime * _rotationSpeed);
+        _turretModelToRotateUpDown.LookAt(CurrentTarget);
+        //_turretModelToRotateUpDown.rotation = Quaternion.Lerp(_turretModelToRotateUpDown.rotation, targetXRotation, Time.deltaTime * _rotationSpeed);
 
         return Physics.Raycast(_bulletSpawner.position, _bulletSpawner.forward, 100f, _whatIsEnemy);
     }

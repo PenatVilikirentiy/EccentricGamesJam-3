@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396870275281709436}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.008879423, y: 1.1541195, z: 0.0039183497}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
-  - {fileID: 4613063363088932071}
+  - {fileID: 1587311934667534235}
   m_Father: {fileID: 8559043641551376242}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &6380234654433232713
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -138,14 +138,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1822361413922938752}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0064155534, z: -0.0012174803}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.00132, z: 0.00561}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4258457390944340301}
-  m_Father: {fileID: 4582464777151522976}
+  m_Father: {fileID: 1587311934667534235}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &1564762951253628287
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -344,7 +344,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5584797933218437626}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.0115, z: -0}
+  m_LocalPosition: {x: 0, y: -0.0156, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4613063363088932071}
@@ -402,18 +402,50 @@ MonoBehaviour:
   CurrentTarget: {fileID: 0}
   _raycast: {fileID: 4137438302010478202}
   _bulletSpawner: {fileID: 4258457390944340301}
-  _turretModel: {fileID: 6137472700367320294}
-  _bulletPrefab: {fileID: 1232452800383748848, guid: 9d20ecb3ec4f614479e399692a84578a, type: 3}
+  _turretModelToRotateLeftRight: {fileID: 8559043641551376242}
+  _turretModelToRotateUpDown: {fileID: 1587311934667534235}
+  _bulletPrefab: {fileID: 1232452800383748848, guid: 32e232ba8fa2cf048b39570c7ddb0fa0, type: 3}
   _shotSound: {fileID: 3270904077886039661}
   _shotEffect: {fileID: 0}
   _muzzleFlash: {fileID: 0}
   _bulletSpeed: 100
   _fireRate: 1
-  _rotationSpeed: 5
+  _rotationSpeed: 10
   _whatIsEnemy:
     serializedVersion: 2
     m_Bits: 8
   _size: {x: 1, y: 1}
+--- !u!1 &6636801178345796947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1587311934667534235}
+  m_Layer: 0
+  m_Name: Barrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1587311934667534235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6636801178345796947}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4613063363088932071}
+  m_Father: {fileID: 4582464777151522976}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &7320374553388845389
 GameObject:
   m_ObjectHideFlags: 0

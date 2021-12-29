@@ -12,6 +12,7 @@ public class MoneyManager : MonoBehaviour
     private void Start() {
 
         CoinCount = PlayerPrefs.GetInt("CoinCount");
+        CoinCount += 500;
         _coinText.text = ("x" + CoinCount);
         //PlayerPref.DeleteKey("CoinCount")
     }

@@ -495,7 +495,7 @@ MonoBehaviour:
   _muzzleFlash: {fileID: 0}
   _bulletSpeed: 100
   _fireRate: 15
-  _rotationSpeed: 5
+  _rotationSpeed: 10
   _whatIsEnemy:
     serializedVersion: 2
     m_Bits: 8

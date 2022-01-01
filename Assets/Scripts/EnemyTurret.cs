@@ -121,18 +121,18 @@ public class EnemyTurret : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(_bulletSpawner.position, _bulletSpawner.forward * 100f);
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawRay(_bulletSpawner.position, _bulletSpawner.forward * 100f);
 
-        //for (int x = 0; x < _size.x; x++)
-        //{
-        //    for (int y = 0; y < _size.y; y++)
-        //    {
-        //        Gizmos.color = Color.yellow;
-        //        Gizmos.DrawCube(transform.position + new Vector3(x, 0, y), new Vector3(1, 0.1f, 1));
-        //    }
-        //}
-    }
+    //    //for (int x = 0; x < _size.x; x++)
+    //    //{
+    //    //    for (int y = 0; y < _size.y; y++)
+    //    //    {
+    //    //        Gizmos.color = Color.yellow;
+    //    //        Gizmos.DrawCube(transform.position + new Vector3(x, 0, y), new Vector3(1, 0.1f, 1));
+    //    //    }
+    //    //}
+    //}
 }

@@ -493,7 +493,7 @@ MonoBehaviour:
   _shotEffect: {fileID: 0}
   _muzzleFlash: {fileID: 0}
   _bulletSpeed: 100
-  _fireRate: 1
+  _fireRate: 2
   _rotationSpeed: 10
   _whatIsEnemy:
     serializedVersion: 2

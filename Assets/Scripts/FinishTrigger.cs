@@ -12,10 +12,13 @@ public class FinishTrigger : MonoBehaviour
         if (moveTrain) {
             moveTrain.Speed = 0f;
             Debug.Log("TrainStopped");
-            _restartCanvas.SetActive(true);
-            //Invoke(nameof(RestartScene), 8f);
+            Invoke(nameof(OpenRestartUI), 2f);
         }
 
+    }
+
+    public void OpenRestartUI() {
+        _restartCanvas.SetActive(true);
     }
 
     public void RestartScene()

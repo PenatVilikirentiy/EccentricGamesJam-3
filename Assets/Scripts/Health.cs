@@ -6,6 +6,7 @@ public class Health : MonoBehaviour
     [SerializeField] protected int _maxHealth = 100;
     [SerializeField] private HealthBar HealthBar;
 
+
     [SerializeField] protected int _reward = 100;
 
     private void Start()

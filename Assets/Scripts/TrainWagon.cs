@@ -14,7 +14,7 @@ public class TrainWagon : MonoBehaviour
         //_grid = new Turret[_gridSize.x, _gridSize.y];
     }
 
-    public void Attack(TestEnemy enemy)
+    public void Attack(EnemyHealth enemy)
     {
         foreach (Turret turret in _turrets)
         {

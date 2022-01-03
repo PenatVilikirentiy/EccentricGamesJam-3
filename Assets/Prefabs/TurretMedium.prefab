@@ -397,7 +397,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417f9e0cd9894c04390aa85c125f2070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderers: []
+  _renderers:
+  - {fileID: 565279784675037012}
+  - {fileID: 453264728665548260}
+  - {fileID: 5749772090529002117}
+  _regularMaterial: {fileID: 2100000, guid: d3615947c7d5596409e92c3046a3abbc, type: 2}
+  _highlightedMaterial: {fileID: 2100000, guid: 5b408bf7bba055a4aa395da3ec9bf335, type: 2}
   Collider: {fileID: 2225723943817785497}
   CurrentTarget: {fileID: 0}
   _raycast: {fileID: 4137438302010478202}
@@ -588,7 +593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4137438302010478202
 Transform:
   m_ObjectHideFlags: 0

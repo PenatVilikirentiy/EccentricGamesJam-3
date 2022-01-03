@@ -481,7 +481,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417f9e0cd9894c04390aa85c125f2070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderers: []
+  _renderers:
+  - {fileID: 8636903364378270124}
+  - {fileID: 8568708060093592319}
+  - {fileID: 82031655425009327}
+  - {fileID: 3408109675325977814}
+  - {fileID: 756749394238032887}
+  _regularMaterial: {fileID: 2100000, guid: 57e0fe9905af80848ad94f914d615ca3, type: 2}
+  _highlightedMaterial: {fileID: 2100000, guid: 5b408bf7bba055a4aa395da3ec9bf335, type: 2}
   Collider: {fileID: 9040736932601169094}
   CurrentTarget: {fileID: 0}
   _raycast: {fileID: 6557056629933324837}

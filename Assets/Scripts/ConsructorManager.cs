@@ -11,14 +11,33 @@ public class ConsructorManager : MonoBehaviour {
     [SerializeField] private MoneyManager _moneyManager;
     [SerializeField] private int _currentTurretIndex = 0;
     [SerializeField] private int _currentTurretPrice = 0;
+    //_choosingTurret = true after pressing the turret button
     [SerializeField] private bool _choosingTurret = false;
+
+    //create a list of all turretplatforms
+    public List<TurretPlatform> TurretPlatforms;
 
 
     void Update() {
 
+        //placing the turret
         if (_choosingTurret == true) {
+            //going through all TurretPlatforms and turning HighlightTurretON method
+            //sending an index of chosen turret to all turret platforms for highlighting
+            foreach (TurretPlatform turretPlatform in TurretPlatforms) {
+                turretPlatform.HighlightTurretON(_currentTurretIndex);
+            }
+
+
+
 
             if (Input.GetMouseButtonDown(0)) {
+
+                //after click going through all TurretPlatforms and turning HighlightTurretOFF method
+                foreach (TurretPlatform turretPlatform in TurretPlatforms) {
+                    turretPlatform.HighlightTurretOFF(_currentTurretIndex);
+                }
+
                 _choosingTurret = false;
 
 
@@ -29,7 +48,7 @@ public class ConsructorManager : MonoBehaviour {
                     if (Physics.Raycast(cameraRay, out RaycastHit hit, 100f)) {
                         TurretPlatform platform = hit.collider?.GetComponent<TurretPlatform>();
                         if (platform) {
-                            platform.chooseTurret(_currentTurretIndex);
+                            platform.SetTurret(_currentTurretIndex);
                             //Debug.Log("TurretChosen" + CurrentTurretIndex);
                             _moneyManager.ChangeValue(-_currentTurretPrice);
                             _currentTurretIndex = 0;

@@ -414,7 +414,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6137472700367320294}
   - component: {fileID: 8490396954339738772}
-  - component: {fileID: 6137472700367320295}
   m_Layer: 7
   m_Name: EnemyTurret
   m_TagString: Untagged
@@ -469,36 +468,6 @@ MonoBehaviour:
   _whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
---- !u!114 &6137472700367320295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6137472700367320296}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 417f9e0cd9894c04390aa85c125f2070, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _renderers: []
-  Collider: {fileID: 2225723943817785497}
-  CurrentTarget: {fileID: 0}
-  _raycast: {fileID: 4137438302010478202}
-  _bulletSpawner: {fileID: 5740837286691980702}
-  _turretModelToRotateLeftRight: {fileID: 0}
-  _turretModelToRotateUpDown: {fileID: 0}
-  _bulletPrefab: {fileID: 1232452800383748848, guid: 9d20ecb3ec4f614479e399692a84578a, type: 3}
-  _shotSound: {fileID: 3270904077886039661}
-  _shotEffect: {fileID: 0}
-  _muzzleFlash: {fileID: 0}
-  _bulletSpeed: 100
-  _fireRate: 5
-  _rotationSpeed: 5
-  _whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 8
-  _size: {x: 1, y: 1}
 --- !u!1 &6577315465322772055
 GameObject:
   m_ObjectHideFlags: 0

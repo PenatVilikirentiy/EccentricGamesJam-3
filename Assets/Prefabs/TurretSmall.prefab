@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1076861242242443753
 Transform:
   m_ObjectHideFlags: 0
@@ -482,7 +482,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417f9e0cd9894c04390aa85c125f2070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderers: []
+  _renderers:
+  - {fileID: 2453077411176614317}
+  - {fileID: 8159931105866500008}
+  - {fileID: 4095674999849337892}
+  - {fileID: 5215965514855286080}
+  - {fileID: 2926800785268899268}
+  - {fileID: 4857237407170771155}
+  _regularMaterial: {fileID: 2100000, guid: 3d8ca71baf5db2d459622ee2faad1486, type: 2}
+  _highlightedMaterial: {fileID: 2100000, guid: 5b408bf7bba055a4aa395da3ec9bf335, type: 2}
   Collider: {fileID: 2225723943817785497}
   CurrentTarget: {fileID: 0}
   _raycast: {fileID: 4137438302010478202}
@@ -786,7 +794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6329632183950564030
 Transform:
   m_ObjectHideFlags: 0

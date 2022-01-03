@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    //renderers to change to highlight placement
     [SerializeField] private Renderer[] _renderers;
+    //material to change to highlight placement
+    [SerializeField] private Material _regularMaterial;
+    [SerializeField] private Material _highlightedMaterial;
+
+
     public Collider Collider;
     public Transform CurrentTarget;
     public Transform _raycast;
@@ -85,31 +91,44 @@ public class Turret : MonoBehaviour
         _muzzleFlash.SetActive(false);
     }
 
-    public void SetTranparent(bool isAvailable)
-    {
-        if(isAvailable)
-        {
-            foreach(Renderer renderer in _renderers)
-            {
-                renderer.material.color = new Color(0, 1, 0, .2f);
-            }
+    
+    public void SetHightlightedMaterial (){
+        foreach (Renderer renderer in _renderers) {
+            renderer.material = _highlightedMaterial;
         }
-        else
-        {
-            foreach (Renderer renderer in _renderers)
-            {
-                renderer.material.color = new Color(1, 0, 0, .2f);
-            }
+    }
+    public void SetNormalMaterial (){
+        foreach (Renderer renderer in _renderers) {
+            renderer.material = _regularMaterial;
         }
     }
 
-    public void SetNormal()
-    {
-        foreach (Renderer renderer in _renderers)
-        {
-            renderer.material.color = new Color(1, 1, 1, 1);
-        }
-    }
+
+    //public void SetTranparent(bool isAvailable)
+    //{
+    //    if(isAvailable)
+    //    {
+    //        foreach(Renderer renderer in _renderers)
+    //        {
+    //            renderer.material.color = new Color(0, 1, 0, .2f);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        foreach (Renderer renderer in _renderers)
+    //        {
+    //            renderer.material.color = new Color(1, 0, 0, .2f);
+    //        }
+    //    }
+    //}
+
+    //public void SetNormal()
+    //{
+    //    foreach (Renderer renderer in _renderers)
+    //    {
+    //        renderer.material.color = new Color(1, 1, 1, 1);
+    //    }
+    //}
 
     //private void OnDrawGizmos()
     //{

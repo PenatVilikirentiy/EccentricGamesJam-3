@@ -25,10 +25,8 @@ public class TrainPartHealth : Health
 
     protected override void Die()
     {
-        //base.Die();
         _trainSound.enabled = false;
         _moveTrain.Speed = 0;
-
         _gameOver.SetActive(true);
     }
 

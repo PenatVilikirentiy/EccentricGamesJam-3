@@ -57,7 +57,7 @@ public class ConsructorManager : MonoBehaviour {
                     }
 
                 } else {
-                    Debug.Log("not enought money");
+                    //Debug.Log("not enought money");
                     _currentTurretIndex = 0;
                     _currentTurretPrice = 0;
                 }
@@ -79,7 +79,7 @@ public class ConsructorManager : MonoBehaviour {
     public void SetTurret(int turretIndex) {
         _choosingTurret = true;
         _currentTurretIndex = turretIndex;
-        Debug.Log("button SentTurretIndex" + _currentTurretIndex + "for _currentTurretPrice" + _currentTurretPrice);
+        //Debug.Log("button SentTurretIndex" + _currentTurretIndex + "for _currentTurretPrice" + _currentTurretPrice);
     }
 }
 

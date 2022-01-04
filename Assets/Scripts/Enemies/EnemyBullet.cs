@@ -11,11 +11,6 @@ public class EnemyBullet : MonoBehaviour
         Destroy(gameObject, 3f);
     }
 
-    private void OnEnable()
-    {        
-        //Invoke("Die", 1.0f);
-    }
-
     private void OnTriggerEnter(Collider collider)
     {
         Health enemyHealth = collider.attachedRigidbody?.GetComponent<TrainPartHealth>();
@@ -23,7 +18,6 @@ public class EnemyBullet : MonoBehaviour
         if (enemyHealth)
         {
             enemyHealth.TakeDamage(_damage);
-            //Debug.Log("dealthDamage");
         }
 
         Die();
@@ -33,6 +27,5 @@ public class EnemyBullet : MonoBehaviour
     {
         //_bulletExplosionEffect.Play();
         Destroy(gameObject);
-        //gameObject.SetActive(false);
     }
 }

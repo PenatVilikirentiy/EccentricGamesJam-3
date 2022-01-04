@@ -12,13 +12,10 @@ public class EnemyHealth : Health {
         _healthBar.UpdateFillAmmount(_currentHealth, _maxHealth);
     }
 
-
     protected override void Die() {
         base.Die();
         FindObjectOfType<MoneyManager>().ChangeValue(_reward);
-
     }
-
 
     public void BecomeTarget() {
         _targetIcon.SetActive(true);

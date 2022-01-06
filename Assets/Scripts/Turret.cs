@@ -42,11 +42,13 @@ public class Turret : MonoBehaviour
     public void Shoot()
     {
         var shotSound = Instantiate(_shotSound);
+        shotSound.pitch = Random.Range(0.9f, 1.1f);
+        shotSound.volume = Random.Range(0.3f, 0.5f);
         _shotSound.Play();
         Destroy(shotSound.gameObject, 1f);
 
-        //_muzzleFlash.SetActive(true);
-        //Invoke(nameof(HideMuzzleFlash), 0.1f);
+        _muzzleFlash.SetActive(true);
+        Invoke(nameof(HideMuzzleFlash), 0.05f);
 
         Bullet bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, Quaternion.identity);
         bullet.Rigidbody.velocity = _bulletSpawner.forward * _bulletSpeed;

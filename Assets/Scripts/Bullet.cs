@@ -25,7 +25,9 @@ public class Bullet : MonoBehaviour
 
     private void Die()
     {
-        //_bulletExplosionEffect.Play();
+        ParticleSystem bulletExplosionEffect = Instantiate(_bulletExplosionEffect, transform.position, Quaternion.identity);
+        bulletExplosionEffect.Play();
+        Destroy(bulletExplosionEffect, 0.3f);
         Destroy(gameObject);
     }
 }

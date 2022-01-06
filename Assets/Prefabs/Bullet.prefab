@@ -237,7 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 4702050959703441469}
   _damage: 2
-  _bulletExplosionEffect: {fileID: 0}
+  _bulletExplosionEffect: {fileID: 1468589604221265663, guid: ab814a98485ec374bb2e7135f8b722ce, type: 3}
 --- !u!135 &4238078231593662326
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -246,7 +246,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5789212504346504189}
   m_Material: {fileID: 13400000, guid: 1386ba0b29f80c54a937ca9434caa7d3, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

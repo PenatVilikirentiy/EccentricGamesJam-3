@@ -25,6 +25,7 @@ public class Turret : MonoBehaviour
     [SerializeField] private float _bulletSpeed = 100f;
     [SerializeField] private float _fireRate = 5f;
     [SerializeField] private float _rotationSpeed = 1f;
+    [SerializeField] private float _upDownAimOffset = 1.5f;
 
     [SerializeField] private LayerMask _whatIsEnemy;
 
@@ -67,7 +68,7 @@ public class Turret : MonoBehaviour
         _turretModelToRotateLeftRight.localRotation = Quaternion.Lerp(_turretModelToRotateLeftRight.localRotation, clampedQuaternion, Time.deltaTime * _rotationSpeed);
 
         // Rotation up-down
-        clampedQuaternion = Quaternion.Euler(eulerRotation.x, 0, 0);
+        clampedQuaternion = Quaternion.Euler(eulerRotation.x - _upDownAimOffset, 0, 0);
         _turretModelToRotateUpDown.localRotation = Quaternion.Lerp(_turretModelToRotateUpDown.localRotation, clampedQuaternion, Time.deltaTime * _rotationSpeed);
 
         return Physics.Raycast(_bulletSpawner.position, _bulletSpawner.forward, 100f, _whatIsEnemy);

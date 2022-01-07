@@ -50,7 +50,7 @@ public class Turret : MonoBehaviour
         _muzzleFlash.SetActive(true);
         Invoke(nameof(HideMuzzleFlash), 0.05f);
 
-        Bullet bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, Quaternion.identity);
+        Bullet bullet = Instantiate(_bulletPrefab, _bulletSpawner.position, _bulletSpawner.rotation);
         bullet.Rigidbody.velocity = _bulletSpawner.forward * _bulletSpeed;
     }
 

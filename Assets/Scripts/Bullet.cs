@@ -38,30 +38,6 @@ public class Bullet : MonoBehaviour
         _lastPosition = transform.position;
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Health enemyHealth = collision.collider.attachedRigidbody?.GetComponent<Health>();
-
-    //    if (enemyHealth)
-    //    {
-    //        enemyHealth.TakeDamage(_damage);
-    //    }
-
-    //    Die();
-    //}
-
-    //private void OnTriggerEnter(Collider collider)
-    //{
-    //    Health enemyHealth = collider.attachedRigidbody?.GetComponent<Health>();
-
-    //    if (enemyHealth)
-    //    {
-    //        enemyHealth.TakeDamage(_damage);
-    //    }
-
-    //    Die();
-    //}
-
     private void Die()
     {
         ParticleSystem bulletExplosionEffect = Instantiate(_bulletExplosionEffect, transform.position, Quaternion.identity);

@@ -18,8 +18,6 @@ public class Turret : MonoBehaviour
 
     [SerializeField] private AudioSource _shotSound;
 
-    [SerializeField] private ParticleSystem _shotEffect;
-
     [SerializeField] private GameObject _muzzleFlash;
 
     [SerializeField] private float _bulletSpeed = 100f;
@@ -78,13 +76,13 @@ public class Turret : MonoBehaviour
     {
         _muzzleFlash.SetActive(false);
     }
-
     
     public void SetHightlightedMaterial (){
         foreach (Renderer renderer in _renderers) {
             renderer.material = _highlightedMaterial;
         }
     }
+
     public void SetNormalMaterial (){
         foreach (Renderer renderer in _renderers) {
             renderer.material = _regularMaterial;

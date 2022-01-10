@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 6187236768451296110}
   - component: {fileID: 7784138717657716290}
   - component: {fileID: 7988970957067959880}
+  - component: {fileID: 3638334738013032982}
   m_Layer: 3
   m_Name: EnemySmall
   m_TagString: Untagged
@@ -420,6 +421,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DistanceToActivate: 35
+--- !u!114 &3638334738013032982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155302112531834960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca24aeaabec73a44a9b69ee611044f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentTarget: {fileID: 0}
 --- !u!1 &4494679600471658992
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +836,10 @@ PrefabInstance:
       propertyPath: _bulletSpeed
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 8490396954339738772, guid: d5cb607c5f9ce644794bda62239122b9, type: 3}
+      propertyPath: _chooseTargetWagon
+      value: 
+      objectReference: {fileID: 3638334738013032982}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5cb607c5f9ce644794bda62239122b9, type: 3}
 --- !u!4 &7265337282364966283 stripped

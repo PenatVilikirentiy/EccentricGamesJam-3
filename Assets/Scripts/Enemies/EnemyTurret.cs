@@ -4,7 +4,8 @@ public class EnemyTurret : MonoBehaviour
 {
     [SerializeField] private Renderer[] _renderers;
     public Collider Collider;
-    public Transform CurrentTarget;
+    private Transform _currentTarget;
+    [SerializeField] private ChooseTargetWagon _chooseTargetWagon;
     public Transform _raycast;
 
     [SerializeField] private Transform _bulletSpawner;
@@ -29,11 +30,12 @@ public class EnemyTurret : MonoBehaviour
 
     private float _nextTimeToFire = 0;
 
-    private TrainWagon[] _targets;
+    //private TrainWagon[] _targets;
 
     private void Start()
     {
-        _targets = FindObjectsOfType<TrainWagon>();
+        _currentTarget = _chooseTargetWagon.CurrentTarget;
+    //    _targets = FindObjectsOfType<TrainWagon>();
     }
 
     private void Update()
@@ -71,9 +73,9 @@ public class EnemyTurret : MonoBehaviour
 
     public bool Aim()
     {
-        if (CurrentTarget == null) SetTarget();
+        //if (CurrentTarget == null) SetTarget();
 
-        Vector3 target = CurrentTarget.position - _bulletSpawner.position;
+        Vector3 target = _currentTarget.position - _bulletSpawner.position;
         Vector3 upDownRotation = new Vector3(target.x, target.y, 0);
         Vector3 leftRightRotation = new Vector3(target.x, 0, target.z);
 
@@ -85,10 +87,10 @@ public class EnemyTurret : MonoBehaviour
         return Physics.Raycast(_bulletSpawner.position, _bulletSpawner.forward, 100f, _whatIsEnemy);
     }
 
-    private void SetTarget()
-    {
-        CurrentTarget = _targets[Random.Range(0, _targets.Length)]?.transform;
-    }
+    //private void SetTarget()
+    //{
+    //    CurrentTarget = _targets[Random.Range(0, _targets.Length)]?.transform;
+    //}
 
     private void HideMuzzleFlash()
     {

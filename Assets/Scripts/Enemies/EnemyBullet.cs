@@ -13,7 +13,8 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        Health enemyHealth = collider.attachedRigidbody?.GetComponent<TrainPartHealth>();
+        //TrainPartHealth enemyHealth = collider.attachedRigidbody?.GetComponent<TrainPartHealth>();
+        TrainWagon enemyHealth = collider.GetComponent<TrainWagon>();
 
         if (enemyHealth)
         {

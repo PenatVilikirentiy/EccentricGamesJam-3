@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class CursorManager : MonoBehaviour
+public class AtackManager : MonoBehaviour
 {
-    [SerializeField] private TrainWagon _currentSelectedWagon;
-    private EnemyHealth _selectedEnemy;
+    public EnemyHealth _selectedEnemy;
 
     private void Update()
     {
@@ -11,7 +10,7 @@ public class CursorManager : MonoBehaviour
         {
             Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if(Physics.Raycast(cameraRay, out RaycastHit hit, 100f))
+            if(Physics.Raycast(cameraRay, out RaycastHit hit, 1000f))
             {
                 if (_selectedEnemy) {
                     _selectedEnemy.TurnOffTarget();
@@ -19,9 +18,10 @@ public class CursorManager : MonoBehaviour
 
                 _selectedEnemy = hit.collider?.attachedRigidbody?.GetComponent<EnemyHealth>();
 
-                if (_selectedEnemy && _currentSelectedWagon)
+                if (_selectedEnemy  )
                 {
-                    _currentSelectedWagon.Attack(_selectedEnemy);
+                    //_currentSelectedWagon.Attack(_selectedEnemy);
+                    Train.Instance.Atack(_selectedEnemy.transform);
                     _selectedEnemy.BecomeTarget();
                 }
             }

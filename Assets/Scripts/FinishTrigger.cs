@@ -11,7 +11,7 @@ public class FinishTrigger : MonoBehaviour
 
         if (moveTrain) {
             moveTrain.Speed = 0f;
-            //Debug.Log("TrainStopped");
+            Debug.Log("TrainStopped");
             Invoke(nameof(OpenRestartUI), 2f);
         }
 
@@ -23,6 +23,7 @@ public class FinishTrigger : MonoBehaviour
 
     public void RestartScene()
     {
+        //SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

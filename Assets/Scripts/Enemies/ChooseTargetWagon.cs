@@ -3,16 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ChooseTargetWagon : MonoBehaviour {
-    private TrainWagon[] _targets;
-    public Transform CurrentTarget;
+
+    public TrainWagon CurrentTarget;
+
+    public EnemyMove EnemyMove;
+    public List<EnemyTurret> EnemyTurrets;
 
     private void Start() {
-        _targets = FindObjectsOfType<TrainWagon>();
-        SetTarget();
+        ResetTarget();
+        //when wagon dies event listener reset the target
+        Train.Instance.OnWagonDeath.AddListener(ResetTarget);
     }
 
-    public void SetTarget() {
-        CurrentTarget = _targets[Random.Range(0, _targets.Length)]?.transform;
+    public void ResetTarget() {
+
+        CurrentTarget = Train.Instance.TrainWagons[Random.Range(0, Train.Instance.TrainWagons.Count)];
+
+
+        if (CurrentTarget.IsActive == true) {
+            foreach (EnemyTurret enemyTurret in EnemyTurrets) {
+                enemyTurret._getTarget(CurrentTarget);
+            }
+            EnemyMove._getTarget(CurrentTarget);
+        } 
+        
+        //else { ResetTarget(); }
+
+
+
     }
 
 }

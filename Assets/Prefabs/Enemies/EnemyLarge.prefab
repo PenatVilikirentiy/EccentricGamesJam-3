@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 7784138717657716290}
   - component: {fileID: 7988970957067959880}
   - component: {fileID: 4345569296637405458}
+  - component: {fileID: 765719258914974780}
   m_Layer: 3
   m_Name: EnemyLarge
   m_TagString: Untagged
@@ -386,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b6ffe811aa5dc40ad5e1c35ed32ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
+  _currentTarget: {fileID: 0}
   _rigidbody: {fileID: 2066334679706244823}
   _speedMultiplier: 0.07
   _rotationSpeed: 0.1
@@ -421,6 +422,23 @@ MonoBehaviour:
   _healthBar: {fileID: 7266032548481581387}
   _targetIcon: {fileID: 9064563030383230274}
   _reward: 20
+--- !u!114 &765719258914974780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155302112531834960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca24aeaabec73a44a9b69ee611044f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentTarget: {fileID: 0}
+  EnemyMove: {fileID: 7784138717657716290}
+  EnemyTurrets:
+  - {fileID: 5830713462908856345}
+  - {fileID: 6834640613436557243}
 --- !u!1 &4494679600471658992
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,6 +894,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5655606906946656820, guid: e523952146d7ced459312b4af7ee6c06, type: 3}
     - target: {fileID: 8490396954339738772, guid: d5cb607c5f9ce644794bda62239122b9, type: 3}
+      propertyPath: _chooseTargetWagon
+      value: 
+      objectReference: {fileID: 765719258914974780}
+    - target: {fileID: 8490396954339738772, guid: d5cb607c5f9ce644794bda62239122b9, type: 3}
       propertyPath: _whatIsEnemy.m_Bits
       value: 128
       objectReference: {fileID: 0}
@@ -886,6 +908,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6137472700367320294, guid: d5cb607c5f9ce644794bda62239122b9, type: 3}
   m_PrefabInstance: {fileID: 2682219081972558989}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5830713462908856345 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8490396954339738772, guid: d5cb607c5f9ce644794bda62239122b9, type: 3}
+  m_PrefabInstance: {fileID: 2682219081972558989}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e766c1d1a1d85449c9ec2ce485c7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3101421477784879919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -970,6 +1003,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5655606906946656820, guid: e523952146d7ced459312b4af7ee6c06, type: 3}
     - target: {fileID: 8490396954339738772, guid: d5cb607c5f9ce644794bda62239122b9, type: 3}
+      propertyPath: _chooseTargetWagon
+      value: 
+      objectReference: {fileID: 765719258914974780}
+    - target: {fileID: 8490396954339738772, guid: d5cb607c5f9ce644794bda62239122b9, type: 3}
       propertyPath: _whatIsEnemy.m_Bits
       value: 128
       objectReference: {fileID: 0}
@@ -980,3 +1017,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6137472700367320294, guid: d5cb607c5f9ce644794bda62239122b9, type: 3}
   m_PrefabInstance: {fileID: 3101421477784879919}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6834640613436557243 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8490396954339738772, guid: d5cb607c5f9ce644794bda62239122b9, type: 3}
+  m_PrefabInstance: {fileID: 3101421477784879919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e766c1d1a1d85449c9ec2ce485c7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

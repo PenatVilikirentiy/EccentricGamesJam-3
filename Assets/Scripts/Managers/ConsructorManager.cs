@@ -17,6 +17,19 @@ public class ConsructorManager : MonoBehaviour {
     //create a list of all turretplatforms
     public List<TurretPlatform> TurretPlatforms;
 
+    public static ConsructorManager Instance;
+
+    private void Awake() {
+        if (Instance == null) {
+            Instance = this;
+        } else {
+            Destroy(gameObject);
+        }
+    }
+
+    public void AddPlatform(TurretPlatform turretPlatform) {
+        TurretPlatforms.Add(turretPlatform);
+    }
 
     void Update() {
 
@@ -27,9 +40,6 @@ public class ConsructorManager : MonoBehaviour {
             foreach (TurretPlatform turretPlatform in TurretPlatforms) {
                 turretPlatform.HighlightTurretON(_currentTurretIndex);
             }
-
-
-
 
             if (Input.GetMouseButtonDown(0)) {
 
@@ -45,20 +55,20 @@ public class ConsructorManager : MonoBehaviour {
 
                     Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                    if (Physics.Raycast(cameraRay, out RaycastHit hit, 100f)) {
+                    if (Physics.Raycast(cameraRay, out RaycastHit hit, 1000f)) {
                         TurretPlatform platform = hit.collider?.GetComponent<TurretPlatform>();
                         if (platform) {
                             platform.SetTurret(_currentTurretIndex);
                             //Debug.Log("TurretChosen" + CurrentTurretIndex);
                             _moneyManager.ChangeValue(-_currentTurretPrice);
-                            _currentTurretIndex = 0;
+                            _currentTurretIndex = -1;
                             _currentTurretPrice = 0;
                         }
                     }
 
                 } else {
-                    //Debug.Log("not enought money");
-                    _currentTurretIndex = 0;
+                    Debug.Log("not enought money");
+                    _currentTurretIndex = -1;
                     _currentTurretPrice = 0;
                 }
             }

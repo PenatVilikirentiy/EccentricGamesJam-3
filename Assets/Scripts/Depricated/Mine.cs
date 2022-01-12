@@ -8,7 +8,7 @@ public class Mine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        TrainPartHealth partHealth = other.attachedRigidbody.GetComponent<TrainPartHealth>();
+        TrainWagon partHealth = other.attachedRigidbody.GetComponent<TrainWagon>();
 
         if (partHealth)
         {

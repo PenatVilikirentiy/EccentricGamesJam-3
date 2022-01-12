@@ -4,31 +4,41 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
     public float LerpRate;
-    public List<Transform> CarsToChose;
-    public Transform ChosenCar;
+    public List<TrainWagon> WagonsToChose;
+    public TrainWagon ChosenCar;
     public int ChosenCarIndex;
 
 
+    public static CameraController Instance;
+
+    private void Awake() {
+        if (Instance == null) {
+            Instance = this;
+        } else {
+            Destroy(gameObject);
+        }
+    }
+
     private void Start() {
-        ChosenCar = CarsToChose[0];
-        //Debug.Log("CarsToChose.Count" + CarsToChose.Count);
+
+        ChosenCar = WagonsToChose[0];
     }
 
     private void Update() {
-        transform.position = Vector3.Lerp(transform.position, ChosenCar.position, Time.deltaTime * LerpRate);
+        transform.position = Vector3.Lerp(transform.position, ChosenCar.transform.position, Time.deltaTime * LerpRate);
     }
 
     public void ChoseCarToTheLeft() {
-        if (ChosenCarIndex < CarsToChose.Count - 1) {
+        if (ChosenCarIndex < WagonsToChose.Count - 1) {
             ChosenCarIndex = ChosenCarIndex + 1;
-            ChosenCar = CarsToChose[ChosenCarIndex];
+            ChosenCar = WagonsToChose[ChosenCarIndex];
         }
 
     }
     public void ChoseCarToTheRight() {
         if (ChosenCarIndex > 0) {
             ChosenCarIndex = ChosenCarIndex - 1;
-            ChosenCar = CarsToChose[ChosenCarIndex];
+            ChosenCar = WagonsToChose[ChosenCarIndex];
         }
     }
 

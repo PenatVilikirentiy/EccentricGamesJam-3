@@ -10,35 +10,35 @@ public class Turret : MonoBehaviour
     [SerializeField] private Material _regularMaterial;
     [SerializeField] private Material _highlightedMaterial;
 
-    [SerializeField] private Transform _bulletSpawner;
-    [SerializeField] private Transform _turretModelToRotateLeftRight;
-    [SerializeField] private Transform _turretModelToRotateUpDown;
+    [SerializeField] protected Transform _bulletSpawner;
+    [SerializeField] protected Transform _turretModelToRotateLeftRight;
+    [SerializeField] protected Transform _turretModelToRotateUpDown;
 
-    [SerializeField] private Bullet _bulletPrefab;
+    [SerializeField] protected Bullet _bulletPrefab;
 
-    [SerializeField] private AudioSource _shotSound;
+    [SerializeField] protected AudioSource _shotSound;
 
-    [SerializeField] private GameObject _muzzleFlash;
+    [SerializeField] protected GameObject _muzzleFlash;
 
-    [SerializeField] private float _bulletSpeed = 100f;
-    [SerializeField] private float _fireRate = 5f;
-    [SerializeField] private float _rotationSpeed = 1f;
-    [SerializeField] private float _upDownAimOffset = 1.5f;
+    [SerializeField] protected float _bulletSpeed = 100f;
+    [SerializeField] protected float _fireRate = 5f;
+    [SerializeField] protected float _rotationSpeed = 1f;
+    [SerializeField] protected float _upDownAimOffset = 1.5f;
 
-    [SerializeField] private LayerMask _whatIsEnemy;
+    [SerializeField] protected LayerMask _whatIsEnemy;
 
-    private float _nextTimeToFire = 0;
+    protected float _nextTimeToFire = 0;
 
-    private void Update()
-    {
-        if (Aim() && Time.time >= _nextTimeToFire)
-        {
-            _nextTimeToFire = Time.time + 1 / _fireRate;
-            Shoot();
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Aim() && Time.time >= _nextTimeToFire)
+    //    {
+    //        _nextTimeToFire = Time.time + 1 / _fireRate;
+    //        Shoot();
+    //    }
+    //}
 
-    public void Shoot()
+    protected virtual void Shoot()
     {
         var shotSound = Instantiate(_shotSound);
         shotSound.pitch = Random.Range(0.9f, 1.1f);
@@ -53,7 +53,7 @@ public class Turret : MonoBehaviour
         bullet.Rigidbody.velocity = _bulletSpawner.forward * _bulletSpeed;
     }
 
-    public bool Aim()
+    protected virtual bool Aim()
     {
         if (CurrentTarget == null) return false;
 
@@ -72,7 +72,7 @@ public class Turret : MonoBehaviour
         return Physics.Raycast(_bulletSpawner.position, _bulletSpawner.forward, 100f, _whatIsEnemy);
     }
 
-    private void HideMuzzleFlash()
+    protected virtual void HideMuzzleFlash()
     {
         _muzzleFlash.SetActive(false);
     }

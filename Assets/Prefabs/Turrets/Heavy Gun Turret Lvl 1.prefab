@@ -284,7 +284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5857588258982966234}
-  - component: {fileID: 5857588258982966235}
+  - component: {fileID: -3641149524819535808}
   m_Layer: 0
   m_Name: Heavy Gun Turret Lvl 1
   m_TagString: Untagged
@@ -308,7 +308,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5857588258982966235
+--- !u!114 &-3641149524819535808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5857588258982966236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 417f9e0cd9894c04390aa85c125f2070, type: 3}
+  m_Script: {fileID: 11500000, guid: 748474ba56146204399a38d822c981a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentTarget: {fileID: 0}
@@ -335,7 +335,7 @@ MonoBehaviour:
   _muzzleFlash: {fileID: 961897732247822353}
   _bulletSpeed: 100
   _fireRate: 0.3
-  _rotationSpeed: 5
+  _rotationSpeed: 1
   _upDownAimOffset: 1.5
   _whatIsEnemy:
     serializedVersion: 2

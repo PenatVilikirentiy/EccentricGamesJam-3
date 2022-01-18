@@ -237,7 +237,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 4702050959703441469}
   _damage: 20
-  _bulletExplosionEffect: {fileID: 0}
+  _bulletExplosionEffect: {fileID: 1918691379848102385, guid: 683ad56af18d81848a8f5e8c9c3e7b8b, type: 3}
+  _lastPosition: {x: 0, y: 0, z: 0}
 --- !u!135 &4238078231593662326
 SphereCollider:
   m_ObjectHideFlags: 0

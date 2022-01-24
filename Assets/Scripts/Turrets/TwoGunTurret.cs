@@ -7,6 +7,7 @@ public class TwoGunTurret : Turret
     [SerializeField] private Transform _secondBulletSpawner;
     [SerializeField] private Barrel _currentBarrel;
     [SerializeField] private GameObject _secondMuzzleFlash;
+    [SerializeField] private Animator _animator;
 
     private Transform _currentBulletSpawner;
     private GameObject _currentMuzzleFlash;
@@ -40,12 +41,14 @@ public class TwoGunTurret : Turret
             _currentBarrel = Barrel.Second;
             _currentBulletSpawner = _secondBulletSpawner;
             _currentMuzzleFlash = _secondMuzzleFlash;
+            _animator.SetTrigger("Shot2");
         }
         else
         {
             _currentBarrel = Barrel.First;
             _currentBulletSpawner = _bulletSpawner;
             _currentMuzzleFlash = _muzzleFlash;
+            _animator.SetTrigger("Shot1");
         }
 
         Bullet bullet = Instantiate(_bulletPrefab, _currentBulletSpawner.position, _currentBulletSpawner.rotation);

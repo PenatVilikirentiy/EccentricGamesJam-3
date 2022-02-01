@@ -236,7 +236,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 4702050959703441469}
+  LastPosition: {x: 0, y: 0, z: 0}
+  TrailRenderer: {fileID: 5605847902994778771}
   _damage: 2
+  _lifetime: 3
   _bulletExplosionEffect: {fileID: 1468589604221265663, guid: ab814a98485ec374bb2e7135f8b722ce, type: 3}
 --- !u!135 &4238078231593662326
 SphereCollider:

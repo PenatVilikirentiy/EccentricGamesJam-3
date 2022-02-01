@@ -330,7 +330,7 @@ MonoBehaviour:
   _bulletSpawner: {fileID: 5857588260049233714}
   _turretModelToRotateLeftRight: {fileID: 5857588258975269848}
   _turretModelToRotateUpDown: {fileID: 5857588260571141466}
-  _bulletPrefab: {fileID: 1232452800383748848, guid: 32e232ba8fa2cf048b39570c7ddb0fa0, type: 3}
+  _bulletPrefab: {fileID: 1232452800383748848, guid: 6929dfbe06da56d48b1d5d4518645289, type: 3}
   _shotSound: {fileID: 5857588260298598624}
   _muzzleFlash: {fileID: 961897732247822353}
   _bulletSpeed: 100
@@ -340,6 +340,7 @@ MonoBehaviour:
   _whatIsEnemy:
     serializedVersion: 2
     m_Bits: 8
+  _bulletsPool: {fileID: 0}
   _animator: {fileID: 8432093111708112275}
 --- !u!1 &5857588260049233715
 GameObject:
@@ -458,7 +459,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0

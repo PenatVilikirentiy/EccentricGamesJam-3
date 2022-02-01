@@ -11,6 +11,7 @@ public class MachineGunTurret : Turret
     private void Start()
     {
         _currentAmmoAmount = _maxAmmoAmount;
+        _bulletsPool = FindObjectOfType<ObjectsPool>();
     }
 
     private void Update()

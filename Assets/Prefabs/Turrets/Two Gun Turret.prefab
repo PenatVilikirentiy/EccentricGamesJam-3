@@ -61,12 +61,13 @@ MonoBehaviour:
   _shotSound: {fileID: 6321113674249021887}
   _muzzleFlash: {fileID: 840509559594301454}
   _bulletSpeed: 100
-  _fireRate: 1
+  _fireRate: 0.6
   _rotationSpeed: 5
   _upDownAimOffset: 1.5
   _whatIsEnemy:
     serializedVersion: 2
     m_Bits: 8
+  _bulletsPool: {fileID: 0}
   _secondBulletSpawner: {fileID: 6321113674171439401}
   _currentBarrel: 0
   _secondMuzzleFlash: {fileID: 840509559030478220}
@@ -663,7 +664,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0

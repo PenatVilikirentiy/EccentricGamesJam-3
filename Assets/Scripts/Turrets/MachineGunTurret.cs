@@ -11,8 +11,6 @@ public class MachineGunTurret : Turret
     private void Start()
     {
         _currentAmmoAmount = _maxAmmoAmount;
-        var pools = FindObjectsOfType<BulletsPool>();
-
         _pool = ObjectsPoolsManager.Instance.GetPool(PoolType.MachineGun);
     }
 

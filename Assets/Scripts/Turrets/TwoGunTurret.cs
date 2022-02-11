@@ -17,6 +17,8 @@ public class TwoGunTurret : Turret
         _currentBarrel = Barrel.First;
         _currentBulletSpawner = _bulletSpawner;
         _currentMuzzleFlash = _muzzleFlash;
+
+        _pool = ObjectsPoolsManager.Instance.GetPool(PoolType.HeavyGun);
     }
 
     private void Update()
@@ -30,11 +32,10 @@ public class TwoGunTurret : Turret
 
     protected override void Shoot()
     {
-        var shotSound = Instantiate(_shotSound);
+        var shotSound = _pool.GetAudio();
         shotSound.pitch = Random.Range(0.9f, 1.1f);
         shotSound.volume = Random.Range(0.3f, 0.5f);
         _shotSound.Play();
-        Destroy(shotSound.gameObject, 1f);
 
         if(_currentBarrel == Barrel.First)
         {
@@ -51,8 +52,13 @@ public class TwoGunTurret : Turret
             _animator.SetTrigger("Shot1");
         }
 
-        Bullet bullet = Instantiate(_bulletPrefab, _currentBulletSpawner.position, _currentBulletSpawner.rotation);
-        bullet.Rigidbody.velocity = _currentBulletSpawner.forward * _bulletSpeed;
+        Bullet bullet = _pool.GetBullet(false);
+        bullet.transform.position = _currentBulletSpawner.position;
+        bullet.transform.rotation = _currentBulletSpawner.rotation;
+        bullet.TrailRenderer.Clear();
+        bullet.gameObject.SetActive(true);
+
+        bullet.Rigidbody.velocity = bullet.transform.forward * _bulletSpeed;
         _currentMuzzleFlash.SetActive(true);
         Invoke(nameof(HideMuzzleFlash), 0.05f);
     }

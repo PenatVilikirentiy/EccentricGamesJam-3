@@ -14,8 +14,6 @@ public class Turret : MonoBehaviour
     [SerializeField] protected Transform _turretModelToRotateLeftRight;
     [SerializeField] protected Transform _turretModelToRotateUpDown;
 
-    [SerializeField] protected Bullet _bulletPrefab;
-
     [SerializeField] protected AudioSource _shotSound;
 
     [SerializeField] protected GameObject _muzzleFlash;
@@ -26,23 +24,22 @@ public class Turret : MonoBehaviour
     [SerializeField] protected float _upDownAimOffset = 1.5f;
 
     [SerializeField] protected LayerMask _whatIsEnemy;
-    [SerializeField] protected ObjectsPool _bulletsPool;
 
+    protected BulletsPool _pool;
     protected float _nextTimeToFire = 0;
 
     protected virtual void Shoot()
     {
-        var shotSound = Instantiate(_shotSound);
+        AudioSource shotSound = _pool.GetAudio();
         shotSound.pitch = Random.Range(0.9f, 1.1f);
         shotSound.volume = Random.Range(0.3f, 0.5f);
         _shotSound.transform.position = _bulletSpawner.position;
-        _shotSound.Play();
-        Destroy(shotSound.gameObject, 1f);
+        _shotSound.Play();        
 
         _muzzleFlash.SetActive(true);
         Invoke(nameof(HideMuzzleFlash), 0.05f);
 
-        Bullet bullet = _bulletsPool._pool.GetFreeElement(false);        
+        Bullet bullet = _pool.GetBullet(false);        
         bullet.transform.position = _bulletSpawner.position;
         bullet.transform.rotation = _bulletSpawner.rotation;
         bullet.TrailRenderer.Clear();

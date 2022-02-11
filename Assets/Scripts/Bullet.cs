@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour
     public Rigidbody Rigidbody;
     public TrailRenderer TrailRenderer;
 
-    [SerializeField] private ParticleSystem _bulletExplosionEffect;
+    [SerializeField] private BulletsPool _pool;
     [SerializeField] private int _damage;
     [SerializeField] private float _lifetime = 3f;
 
@@ -17,6 +17,11 @@ public class Bullet : MonoBehaviour
         _lastPosition = transform.position - new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f);
         _lastPosition = transform.TransformPoint(_lastPosition);
         Invoke(nameof(Deactivate), _lifetime);
+    }
+
+    public void SetPool(BulletsPool pool)
+    {
+        _pool = pool;
     }
 
     private void FixedUpdate()
@@ -48,10 +53,9 @@ public class Bullet : MonoBehaviour
 
     private void Die()
     {
-        ParticleSystem bulletExplosionEffect = Instantiate(_bulletExplosionEffect, transform.position, Quaternion.identity);
+        ParticleSystem bulletExplosionEffect = _pool.GetParticle();
+        bulletExplosionEffect.transform.position = transform.position;
         bulletExplosionEffect.Play();
-
-        Destroy(bulletExplosionEffect.gameObject, 0.3f);
         Invoke(nameof(Deactivate), 0.3f);
     }
 

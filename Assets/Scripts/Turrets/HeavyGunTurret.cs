@@ -4,6 +4,11 @@ public class HeavyGunTurret : Turret
 {
     [SerializeField] private Animator _animator;
 
+    private void Start()
+    {
+        _pool = ObjectsPoolsManager.Instance.GetPool(PoolType.HeavyGun);
+    }
+
     private void Update()
     {
         if (Aim() && Time.time >= _nextTimeToFire)

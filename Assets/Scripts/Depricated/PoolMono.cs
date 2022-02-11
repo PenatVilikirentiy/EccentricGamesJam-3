@@ -24,10 +24,10 @@ public class PoolMono<T> where T : MonoBehaviour
             CreateObject();        
     }
 
-    private T CreateObject(bool isActivebyDefault = false)
+    private T CreateObject(bool isActiveByDefault = false)
     {
         var createdObj = Object.Instantiate(Prefab, Container);
-        createdObj.gameObject.SetActive(isActivebyDefault);
+        createdObj.gameObject.SetActive(isActiveByDefault);
         _pool.Add(createdObj);
         return createdObj;
     }
@@ -47,16 +47,16 @@ public class PoolMono<T> where T : MonoBehaviour
         return false;
     }
 
-    public T GetFreeElement(bool activate = true)
+    public T GetFreeElement(bool isActive = true)
     {
         if (HasFreeElement(out var element))
         {
-            element.gameObject.SetActive(activate);
+            element.gameObject.SetActive(isActive);
             return element;
         }            
 
         if (AutoExpand)
-            return CreateObject(activate);
+            return CreateObject(isActive);
 
         throw new System.Exception($"There is no free element in pool of type {typeof(T)}");
     }

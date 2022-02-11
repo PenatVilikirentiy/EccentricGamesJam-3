@@ -383,7 +383,6 @@ MonoBehaviour:
   _bulletSpawner: {fileID: 4582162573304697608}
   _turretModelToRotateLeftRight: {fileID: 4582162572820311724}
   _turretModelToRotateUpDown: {fileID: 4582162572649241236}
-  _bulletPrefab: {fileID: 1232452800383748848, guid: 9d20ecb3ec4f614479e399692a84578a, type: 3}
   _shotSound: {fileID: 4582162573678366472}
   _muzzleFlash: {fileID: 5887059780319856717}
   _bulletSpeed: 100
@@ -393,7 +392,6 @@ MonoBehaviour:
   _whatIsEnemy:
     serializedVersion: 2
     m_Bits: 8
-  _bulletsPool: {fileID: 0}
   _maxAmmoAmount: 20
   _timeToReaload: 3
 --- !u!1 &4582162572649241239

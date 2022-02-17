@@ -29,22 +29,25 @@ public class EnemyMove : MonoBehaviour
 
 
     private void FixedUpdate() {
-        if (_currentTarget.IsActive == true) {
+        if (_currentTarget) {
+            if (_currentTarget.IsActive == true) {
 
-            Vector3 randomMove = new Vector3(0, 0, Random.Range(-0.2f, 0.2f));
+                Vector3 randomMove = new Vector3(0, 0, Random.Range(-0.2f, 0.2f));
 
-            //moving forvard
-            _targetDirection = (_currentTarget.transform.position + _randomPosition + randomMove) - transform.position;
-            _targetDirection = new Vector3(_targetDirection.x, 0, _targetDirection.z);
+                //moving forvard
+                _targetDirection = (_currentTarget.transform.position + _randomPosition + randomMove) - transform.position;
+                _targetDirection = new Vector3(_targetDirection.x, 0, _targetDirection.z);
 
-            float distance = _targetDirection.magnitude;
-            distance = Mathf.Clamp(distance, 0f, 10f);
-            _rigidbody.AddForce(transform.forward * distance * _speedMultiplier, ForceMode.VelocityChange);
+                float distance = _targetDirection.magnitude;
+                distance = Mathf.Clamp(distance, 0f, 10f);
+                _rigidbody.AddForce(transform.forward * distance * _speedMultiplier, ForceMode.VelocityChange);
 
-            //rotation
-            float angle = Vector3.SignedAngle(transform.forward, _targetDirection, Vector3.up);
-            _rigidbody.AddTorque(0, angle * _rotationSpeed, 0, ForceMode.VelocityChange);
+                //rotation
+                float angle = Vector3.SignedAngle(transform.forward, _targetDirection, Vector3.up);
+                _rigidbody.AddTorque(0, angle * _rotationSpeed, 0, ForceMode.VelocityChange);
+            }
         }
+        
 
     }
 

@@ -17,7 +17,9 @@ public class ChooseTargetWagon : MonoBehaviour {
 
     public void ResetTarget() {
 
-        CurrentTarget = Train.Instance.TrainWagons[Random.Range(0, Train.Instance.TrainWagons.Count)];
+        CurrentTarget = Train.Instance.ActiveTrainWagons[Random.Range(0, Train.Instance.ActiveTrainWagons.Count)];
+        Debug.Log("CurrentTarget " + Train.Instance.ActiveTrainWagons[Random.Range(0, Train.Instance.ActiveTrainWagons.Count)]);
+            //[Random.Range(0, Train.Instance.ActiveTrainWagons.Count)];
 
 
         if (CurrentTarget.IsActive == true) {
@@ -26,11 +28,6 @@ public class ChooseTargetWagon : MonoBehaviour {
             }
             EnemyMove._getTarget(CurrentTarget);
         } 
-        
-        //else { ResetTarget(); }
-
-
-
     }
 
 }

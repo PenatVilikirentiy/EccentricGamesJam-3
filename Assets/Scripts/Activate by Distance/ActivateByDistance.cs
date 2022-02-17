@@ -13,6 +13,8 @@ public class ActivateByDistance : MonoBehaviour
     private bool _isActive = true;
     private Activator _activator;
 
+    public ChooseTargetWagon ChooseTargetWagon;
+
     private void Start()
     {
         _activator = FindObjectOfType<Activator>();
@@ -44,6 +46,7 @@ public class ActivateByDistance : MonoBehaviour
     {
         _isActive = true;
         gameObject.SetActive(true);
+        ChooseTargetWagon.ResetTarget();
     }
         
     public void Deactivate()

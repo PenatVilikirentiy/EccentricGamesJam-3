@@ -25,7 +25,7 @@ public class TrainWagon : MonoBehaviour {
     private void Start() {
 
         CurrentHealth = _maxHealth;
-        Train.Instance.TrainWagons.Add(this);
+        Train.Instance.ActiveTrainWagons.Add(this);
     }
 
     public void TakeDamage(int damageAmount) {
@@ -43,7 +43,7 @@ public class TrainWagon : MonoBehaviour {
 
     private void Die() {
         //Deactivate the turrets
-        Train.Instance.RemoveWagon(this);
+        Train.Instance.RemoveActiveWagon(this);
         IsActive = false;
         _wagonHealthBar.gameObject.SetActive(false);
     }

@@ -405,6 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DistanceToActivate: 35
+  ChooseTargetWagon: {fileID: 765719258914974780}
 --- !u!114 &4345569296637405458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -887,7 +888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8490396954339738772, guid: d5cb607c5f9ce644794bda62239122b9, type: 3}
       propertyPath: _fireRate
-      value: 15
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8490396954339738772, guid: d5cb607c5f9ce644794bda62239122b9, type: 3}
       propertyPath: _bulletPrefab
@@ -996,7 +997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8490396954339738772, guid: d5cb607c5f9ce644794bda62239122b9, type: 3}
       propertyPath: _fireRate
-      value: 15
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8490396954339738772, guid: d5cb607c5f9ce644794bda62239122b9, type: 3}
       propertyPath: _bulletPrefab

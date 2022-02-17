@@ -4,30 +4,28 @@ using UnityEngine;
 public class TurretPlatform : MonoBehaviour {
 
     public List<Turret> TurretsToChose;
-    public int ChosenTurret;
+    public int ChosenTurret =-1;
     public bool TurretIsChosen = false;
 
 
     void Start() {
+
+        Debug.Log(transform.parent.name + gameObject.name + "index" + PlayerPrefs.GetInt(transform.parent.name + gameObject.name));
          ConsructorManager.Instance.AddPlatform(this) ;
 
         if (PlayerPrefs.HasKey(transform.parent.name + gameObject.name)) {
             ChosenTurret = PlayerPrefs.GetInt(transform.parent.name + gameObject.name);
             TurretIsChosen = true;
 
-        } else { ChosenTurret = -1; }
-
-        //checking if there is a saved turret in playerprefs
-        if (PlayerPrefs.GetString(transform.parent.name + gameObject.name) == "TurretIsChosen") {
-            TurretIsChosen = true;
-        }
-        for (int i = 0; i < TurretsToChose.Count; i++) {
-            if (i == ChosenTurret) {
-                TurretsToChose[i].gameObject.SetActive(true);
-            } else {
-                TurretsToChose[i].gameObject.SetActive(false);
+            for (int i = 0; i < TurretsToChose.Count; i++) {
+                if (i == ChosenTurret) {
+                    TurretsToChose[i].gameObject.SetActive(true);
+                } else {
+                    TurretsToChose[i].gameObject.SetActive(false);
+                }
             }
-        }
+        } 
+
     }
 
     public Turret GetCurrentTurret() {
@@ -45,9 +43,6 @@ public class TurretPlatform : MonoBehaviour {
             //save the index of a chosen turret in player prefs
             PlayerPrefs.SetInt(transform.parent.name + gameObject.name , ChosenTurret);
 
-            //save that the turret is chosen in player prefs
-            PlayerPrefs.SetString(transform.parent.name + gameObject.name , "TurretIsChosen");
-
             for (int i = 0; i < TurretsToChose.Count; i++) {
                 if (i == ChosenTurret) {
                     //spesifiing that this TurretPlatform has it's turret already chosen
@@ -58,8 +53,19 @@ public class TurretPlatform : MonoBehaviour {
                     TurretsToChose[i].gameObject.SetActive(false);
                 }
             }
+        } else {
+            ChosenTurret = turretIndex;
+            PlayerPrefs.DeleteKey(transform.parent.name + gameObject.name);
+            TurretIsChosen = false;
+
+            for (int i = 0; i < TurretsToChose.Count; i++) {
+                    TurretsToChose[i].gameObject.SetActive(false);
+            }
         }
     }
+
+
+
 
     public void HighlightTurretON(int turretIndex) {
         ChosenTurret = turretIndex;
@@ -84,5 +90,7 @@ public class TurretPlatform : MonoBehaviour {
                 turret.gameObject.SetActive(false);
             }
         }
+
+        ChosenTurret = -1;
     }
 }

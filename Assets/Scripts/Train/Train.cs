@@ -12,11 +12,38 @@ public class Train : MonoBehaviour {
     [SerializeField] private int _maxTrainHealth;
     [SerializeField] private GameObject _gameOver;
 
+    public List<TrainWagon> ActiveTrainWagons;
+
     public List<TrainWagon> TrainWagons;
+    public int TrainWagonsNumber = 1;
+    public int TrainWagonPrice;
 
     public static Train Instance;
 
     public UnityEvent OnWagonDeath;
+
+
+    public void PurchaseWagon() {
+        if (MoneyManager.Instance.CoinCount >= (TrainWagonPrice * TrainWagonsNumber)) {
+            MoneyManager.Instance.ChangeValue(-(TrainWagonPrice * TrainWagonsNumber));
+
+            TrainWagonsNumber += 1;
+            PlayerPrefs.SetInt("TrainWagonsNumber", TrainWagonsNumber);
+            _updateWagons();
+
+            Debug.Log("TrainWagonsNumber" + TrainWagonsNumber);
+        }
+
+    }
+
+    private void _updateWagons() {
+        for (int i = 0; i < TrainWagons.Count; i++) {
+            if (i < TrainWagonsNumber) {
+                TrainWagons[i].gameObject.SetActive(true);
+            }
+        }
+    }
+
 
 
     private void Awake() {
@@ -25,19 +52,32 @@ public class Train : MonoBehaviour {
         } else {
             Destroy(gameObject);
         }
+
+        if (PlayerPrefs.HasKey("TrainWagonsNumber")) {
+            TrainWagonsNumber = PlayerPrefs.GetInt("TrainWagonsNumber");
+            _updateWagons();
+            Debug.Log("TrainWagonsNumber" + TrainWagonsNumber);
+        }
+
     }
 
-    private void Start() {
+    private void LateStart() {
 
         UpdateTrainHealth();
-        _maxTrainHealth = _currentTrainHealth;
+
+
+        //_maxTrainHealth = _currentTrainHealth;
+
 
     }
+
+
+
 
 
     public void UpdateTrainHealth() {
         _currentTrainHealth = 0;
-        foreach (TrainWagon _trainPartHealth in TrainWagons) {
+        foreach (TrainWagon _trainPartHealth in ActiveTrainWagons) {
             _currentTrainHealth += _trainPartHealth.CurrentHealth;
         }
 
@@ -51,14 +91,14 @@ public class Train : MonoBehaviour {
 
 
     public void Atack(Transform trainTarget) {
-        foreach (TrainWagon trainWagon in TrainWagons) {
+        foreach (TrainWagon trainWagon in ActiveTrainWagons) {
             if (trainWagon.IsActive == true) {
                 trainWagon.Attack(trainTarget);
             }
         }
     }
 
-    public void RemoveWagon(TrainWagon trainPartHealth) {
+    public void RemoveActiveWagon(TrainWagon trainPartHealth) {
         //TrainWagons.Remove(trainPartHealth);
         OnWagonDeath.Invoke();
     }

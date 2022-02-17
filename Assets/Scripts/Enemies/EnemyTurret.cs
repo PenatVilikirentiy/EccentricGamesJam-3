@@ -43,13 +43,15 @@ public class EnemyTurret : MonoBehaviour {
     }
 
     private void Update() {
-        if (_currentTarget.IsActive == true) {
-            if (Aim() && Time.time >= _nextTimeToFire) {
-                _nextTimeToFire = Time.time + 1 / _fireRate;
-                Shoot();
+        if (_currentTarget) {
+            if (_currentTarget.IsActive == true) {
+                if (Aim() && Time.time >= _nextTimeToFire) {
+                    _nextTimeToFire = Time.time + 1 / _fireRate;
+                    Shoot();
+                }
+            } else {
+                _chooseTargetWagon.ResetTarget();
             }
-        } else {
-            _chooseTargetWagon.ResetTarget();
         }
 
     }

@@ -64,7 +64,7 @@ MonoBehaviour:
   - {fileID: 1194967678949246887}
   - {fileID: 7465898806864677450}
   - {fileID: 4621257616140199404}
-  ChosenTurret: 0
+  ChosenTurret: -1
   TurretIsChosen: 0
 --- !u!1001 &1194967677826769184
 PrefabInstance:

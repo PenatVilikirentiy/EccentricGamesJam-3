@@ -8,11 +8,13 @@ public class ConsructorManager : MonoBehaviour {
 
     public GameObject CanvasConstructorOnly;
     [SerializeField] private MoveTrain _moveTrain;
-    [SerializeField] private MoneyManager _moneyManager;
     [SerializeField] private int _currentTurretIndex = 0;
     [SerializeField] private int _currentTurretPrice = 0;
+
     //_choosingTurret = true after pressing the turret button
     [SerializeField] private bool _choosingTurret = false;
+    //_removingTurret = true after pressing the remove turret button
+    [SerializeField] private bool _removingTurret = false;
 
     //create a list of all turretplatforms
     public List<TurretPlatform> TurretPlatforms;
@@ -51,18 +53,20 @@ public class ConsructorManager : MonoBehaviour {
                 _choosingTurret = false;
 
 
-                if (_moneyManager.CoinCount >= _currentTurretPrice) {
+                if (MoneyManager.Instance.CoinCount >= _currentTurretPrice) {
 
                     Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                     if (Physics.Raycast(cameraRay, out RaycastHit hit, 1000f)) {
                         TurretPlatform platform = hit.collider?.GetComponent<TurretPlatform>();
                         if (platform) {
-                            platform.SetTurret(_currentTurretIndex);
-                            //Debug.Log("TurretChosen" + CurrentTurretIndex);
-                            _moneyManager.ChangeValue(-_currentTurretPrice);
-                            _currentTurretIndex = -1;
-                            _currentTurretPrice = 0;
+                            if (platform.TurretIsChosen == false) {
+                                platform.SetTurret(_currentTurretIndex);
+                                MoneyManager.Instance.ChangeValue(-_currentTurretPrice);
+                                _currentTurretIndex = -1;
+                                _currentTurretPrice = 0;
+                            }
+
                         }
                     }
 
@@ -73,24 +77,49 @@ public class ConsructorManager : MonoBehaviour {
                 }
             }
         }
+
+        if (_removingTurret == true) {
+            if (Input.GetMouseButtonDown(0)) {
+                _removingTurret = false;
+                    Debug.Log("removingTurret");
+                Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(cameraRay, out RaycastHit hit, 1000f)) {
+                    TurretPlatform platform = hit.collider?.GetComponent<TurretPlatform>();
+                    if (platform) {
+                        if (platform.TurretIsChosen == true) {
+                            platform.SetTurret(-1);
+                            Debug.Log("send SetTurret(-1) ");
+  
+                        }
+
+                    }
+                }
+            }
+        }
+
     }
 
-    public void ReadyToFight() {
-        CanvasConstructorOnly.SetActive(false);
-        gameObject.SetActive(false);
-        _moveTrain.Speed = 10f;
-        //отключить расстановку турелей
-    }
+public void ReadyToFight() {
+    CanvasConstructorOnly.SetActive(false);
+    gameObject.SetActive(false);
+    _moveTrain.Speed = 10f;
+    //отключить расстановку турелей
+}
 
-    public void SetCurrentTurretPrice(int currentTurretPrice) {
-        _currentTurretPrice = currentTurretPrice;
-    }
+public void SetCurrentTurretPrice(int currentTurretPrice) {
+    _currentTurretPrice = currentTurretPrice;
+}
 
-    public void SetTurret(int turretIndex) {
-        _choosingTurret = true;
-        _currentTurretIndex = turretIndex;
-        //Debug.Log("button SentTurretIndex" + _currentTurretIndex + "for _currentTurretPrice" + _currentTurretPrice);
-    }
+public void SetTurret(int turretIndex) {
+    _choosingTurret = true;
+    _currentTurretIndex = turretIndex;
+    //Debug.Log("button SentTurretIndex" + _currentTurretIndex + "for _currentTurretPrice" + _currentTurretPrice);
+}
+
+public void RemovingTurret() {
+    _removingTurret = true;
+}
 }
 
 
